@@ -1,0 +1,63 @@
+﻿{% extends "admin/frame.html" %}{% block admin %}
+<h2>Report #{{ r.id }}</h2>
+<div class="grid cols-2">
+  <div class="card">
+    <div><b>Company code:</b> {{ r.company_code }}</div>
+    <div><b>Category:</b> {{ r.category }}</div>
+    <div><b>Status:</b> {{ r.status }}</div>
+    <div><b>Created:</b> {{ r.created_at }}</div>
+    <div style="margin-top:10px"><b>Subject:</b> {{ r.subject }}</div>
+    <p style="margin-top:10px;white-space:pre-wrap">{{ r.content }}</p>
+    <form method="post" style="margin-top:10px">
+      <input type="hidden" name="action" value="status">
+      <label>Change status</label>
+      <select name="status" class="input">
+        {% for s in statuses %}<option value="{{ s }}" {% if s==r.status %}selected{% endif %}>{{ s }}</option>{% endfor %}
+      </select>
+      <button class="btn" style="margin-top:8px">Update</button>
+    </form>
+    <form method="post" style="margin-top:10px">
+      <input type="hidden" name="action" value="assign">
+      <label>Assign to manager</label>
+      <select name="manager_id" class="input">
+        <option value="">— choose —</option>
+        {% for m in managers %}<option value="{{ m.id }}" {% if r.assignee_user_id==m.id %}selected{% endif %}>{{ m.email }} ({{ m.company_code }})</option>{% endfor %}
+      </select>
+      <label style="margin-top:8px">Notify text (optional)</label>
+      <input class="input" name="notify_text" placeholder="You have a new item to review from Admin. Please check your messages.">
+      <button class="btn" style="margin-top:8px">Assign</button>
+    </form>
+  </div>
+  <div class="card">
+    <h3>Chats</h3>
+    <div style="display:grid;gap:12px">
+      <div>
+        <h4>Admin ↔ Reporter</h4>
+        <div style="max-height:220px;overflow:auto;border:1px solid var(--line);padding:10px;border-radius:10px;background:#fff">
+          {% for m in msgs_public %}
+            <div style="margin-bottom:10px"><div style="opacity:.7;font-size:12px">{{ m.created_at }} — {{ m.sender }}</div><div>{{ m.body }}</div></div>
+          {% endfor %}
+        </div>
+        <form method="post" style="margin-top:8px">
+          <input type="hidden" name="action" value="msg_public">
+          <textarea class="input" name="body" rows="2" required placeholder="Message to reporter"></textarea>
+          <button class="btn primary" style="margin-top:6px">Send to reporter</button>
+        </form>
+      </div>
+      <div>
+        <h4>Admin ↔ Manager</h4>
+        <div style="max-height:220px;overflow:auto;border:1px solid var(--line);padding:10px;border-radius:10px;background:#fff">
+          {% for m in msgs_internal %}
+            <div style="margin-bottom:10px"><div style="opacity:.7;font-size:12px">{{ m.created_at }} — {{ m.sender }}</div><div>{{ m.body }}</div></div>
+          {% endfor %}
+        </div>
+        <form method="post" style="margin-top:8px">
+          <input type="hidden" name="action" value="msg_internal">
+          <textarea class="input" name="body" rows="2" required placeholder="Message to manager"></textarea>
+          <button class="btn success" style="margin-top:6px">Send to manager</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

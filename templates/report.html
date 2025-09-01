@@ -1,0 +1,33 @@
+﻿{% extends "layout.html" %}{% block body %}
+<div class="container">
+  <h2>Make a Report</h2>
+  <form method="post" class="card grid cols-2">
+    <div><label>Company Code</label><input class="input" name="company_code" required placeholder="Enter your company code"></div>
+    <div><label>Category</label>
+      <select name="category" class="input">
+        {% for c in categories %}<option>{{ c }}</option>{% endfor %}
+      </select>
+    </div>
+    <div><label>Subject</label><input class="input" name="subject" maxlength="140" required></div>
+    <div>
+      <label>Report Mode</label>
+      <select name="mode" class="input"><option value="anonymous">Anonymous</option><option value="confidential">Confidential</option></select>
+    </div>
+    <div style="grid-column:1/-1">
+      <label>Description</label>
+      <textarea class="input" name="content" rows="6" required placeholder="Please include dates, locations, people involved."></textarea>
+    </div>
+    <div><label>Have you contacted regulators/management?</label><input class="input" name="what_done" placeholder="Optional"></div>
+    <div><label>Would you like feedback after investigation?</label>
+      <select class="input" name="want_feedback"><option>Yes</option><option>No</option></select>
+    </div>
+    <div><label>Preferred contact (email/phone & best time)</label><input class="input" name="contact"></div>
+    <div><label>Memorable word</label><input class="input" name="memorable"></div>
+    <div>
+      <label>CAPTCHA: {{ captcha_a }} + {{ captcha_b }} = ?</label>
+      <input class="input" name="captcha" required>
+    </div>
+    <div style="grid-column:1/-1"><button class="btn primary">Submit</button></div>
+  </form>
+</div>
+{% endblock %}

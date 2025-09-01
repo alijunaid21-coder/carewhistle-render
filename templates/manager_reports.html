@@ -1,0 +1,11 @@
+﻿{% extends "manager_frame.html" %}{% block manager %}
+<h2>Reports (metadata only)</h2>
+<div class="card">
+  <table class="table">
+    <tr><th>ID</th><th>Subject</th><th>Category</th><th>Status</th><th>Created</th></tr>
+    {% for r in rows %}
+      <tr><td>{{ r.id }}</td><td>{{ r.subject }}</td><td>{{ r.category }}</td><td>{{ r.status }}</td><td>{{ r.created_at[:16] }}</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

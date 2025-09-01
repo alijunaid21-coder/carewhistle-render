@@ -1,0 +1,12 @@
+﻿{% extends "admin/frame.html" %}{% block admin %}
+<h2>Content</h2>
+<div class="card">
+  <form method="post" class="grid">
+    <label>Home intro</label><textarea class="input" name="home_intro" rows="4">{{ blocks.home_intro or "" }}</textarea>
+    <label>How it works — long</label><textarea class="input" name="how_long" rows="8">{{ blocks.how_long or "" }}</textarea>
+    <label>Benefits</label><textarea class="input" name="benefits" rows="8">{{ blocks.benefits or "" }}</textarea>
+    <label>Who we help</label><textarea class="input" name="who_help" rows="6">{{ blocks.who_help or "" }}</textarea>
+    <button class="btn primary" style="margin-top:8px">Save</button>
+  </form>
+</div>
+{% endblock %}

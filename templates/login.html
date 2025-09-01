@@ -1,0 +1,10 @@
+﻿{% extends "layout.html" %}{% block body %}
+<div class="container card">
+  <h2>Login</h2>
+  <form method="post" class="grid cols-2">
+    <div><label>Email</label><input class="input" name="email" required></div>
+    <div><label>Password</label><input class="input" name="password" type="password" required></div>
+    <div style="grid-column:1/-1"><button class="btn primary">Login</button></div>
+  </form>
+</div>
+{% endblock %}

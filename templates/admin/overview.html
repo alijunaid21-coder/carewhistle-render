@@ -1,0 +1,22 @@
+﻿{% extends "admin/frame.html" %}{% block admin %}
+<h2>Overview</h2>
+<div class="grid cols-4">
+  <div class="card"><div>New</div><div style="font-size:32px;font-weight:900">{{ kpis.new }}</div></div>
+  <div class="card"><div>In Process</div><div style="font-size:32px;font-weight:900">{{ kpis.inproc }}</div></div>
+  <div class="card"><div>Closed</div><div style="font-size:32px;font-weight:900">{{ kpis.closed }}</div></div>
+  <div class="card"><div>Avg First Response</div><div style="font-size:32px;font-weight:900">{{ kpis.avg_hrs }}h</div></div>
+</div>
+<div class="grid cols-3" style="margin-top:16px">
+  <div class="card"><canvas id="byMonth"></canvas></div>
+  <div class="card"><canvas id="byCat"></canvas></div>
+  <div class="card"><canvas id="byStatus"></canvas></div>
+</div>
+<script>
+new Chart(document.getElementById('byMonth'), {type:'line',
+  data:{labels:{{ month.labels|tojson }},datasets:[{label:'Reports',data:{{ month.data|tojson }}, borderColor:'#7c3aed'}]}});
+new Chart(document.getElementById('byCat'), {type:'bar',
+  data:{labels:{{ bycat.labels|tojson }},datasets:[{label:'By category',data:{{ bycat.data|tojson }}, backgroundColor:['#14b8a6','#f59e0b','#ef4444','#3b82f6','#10b981','#a855f7','#eab308'] }]}});
+new Chart(document.getElementById('byStatus'), {type:'doughnut',
+  data:{labels:{{ status.labels|tojson }},datasets:[{data:{{ status.data|tojson }}, backgroundColor:['#7c3aed','#14b8a6','#f59e0b','#ef4444','#3b82f6'] }]}});
+</script>
+{% endblock %}

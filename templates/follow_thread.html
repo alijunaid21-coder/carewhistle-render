@@ -1,0 +1,21 @@
+﻿{% extends "layout.html" %}{% block body %}
+<div class="container">
+  <h2>Case #{{ r.id }} <span class="badge">{{ r.status }}</span></h2>
+  <div class="card">
+    <h3>Messages with Admin</h3>
+    <div style="max-height:360px;overflow:auto;border:1px solid var(--line);padding:10px;border-radius:10px;background:#fff">
+      {% for m in msgs %}
+        <div style="margin-bottom:10px">
+          <div style="opacity:.7;font-size:12px">{{ m.created_at }} — {{ m.sender }}</div>
+          <div>{{ m.body }}</div>
+        </div>
+      {% endfor %}
+    </div>
+    <form method="post" action="{{ url_for('follow_message', case_code=r.case_code) }}" style="margin-top:10px">
+      <label>New message</label>
+      <textarea name="body" rows="3" class="input" required></textarea>
+      <button class="btn primary" style="margin-top:8px">Send</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

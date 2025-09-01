@@ -1,0 +1,12 @@
+﻿{% extends "layout.html" %}{% block body %}
+<div class="layout">
+  <div class="sidebar">
+    <div style="font-weight:900;margin-bottom:8px">Manager</div>
+    <a href="{{ url_for('manager_overview') }}" class="{% if request.endpoint=='manager_overview' %}active{% endif %}">Overview</a>
+    <a href="{{ url_for('manager_reports') }}" class="{% if request.endpoint=='manager_reports' %}active{% endif %}">Reports</a>
+    <a href="{{ url_for('manager_messages') }}" class="{% if request.endpoint=='manager_messages' %}active{% endif %}">Messages</a>
+    <a href="{{ url_for('manager_notifications') }}" class="{% if request.endpoint=='manager_notifications' %}active{% endif %}">Notifications</a>
+  </div>
+  <div class="main">{% block manager %}{% endblock %}</div>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+﻿{% extends "layout.html" %}{% block body %}
+<div class="container card">
+  <h2>Follow your case</h2>
+  <form method="post" class="grid cols-2">
+    <div><label>Case code</label><input class="input" name="case_code" required></div>
+    <div><label>PIN</label><input class="input" name="pin" required></div>
+    <div style="grid-column:1/-1"><button class="btn">Open</button></div>
+  </form>
+</div>
+{% endblock %}

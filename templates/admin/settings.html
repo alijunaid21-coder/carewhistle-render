@@ -1,0 +1,18 @@
+﻿{% extends "admin/frame.html" %}{% block admin %}
+<h2>Settings (placeholders)</h2>
+<div class="card">
+  <form method="post" class="grid cols-2">
+    <div><label>SMTP Host</label><input class="input" name="smtp_host" value="{{ s.smtp_host or '' }}"></div>
+    <div><label>SMTP Port</label><input class="input" name="smtp_port" value="{{ s.smtp_port or '' }}"></div>
+    <div><label>SMTP User</label><input class="input" name="smtp_user" value="{{ s.smtp_user or '' }}"></div>
+    <div><label>SMTP Password</label><input class="input" name="smtp_pass" value="{{ s.smtp_pass or '' }}"></div>
+    <div><label>Stripe Public Key</label><input class="input" name="stripe_pk" value="{{ s.stripe_pk or '' }}"></div>
+    <div><label>Stripe Secret Key</label><input class="input" name="stripe_sk" value="{{ s.stripe_sk or '' }}"></div>
+    <div><label>PayPal Client ID</label><input class="input" name="paypal_id" value="{{ s.paypal_id or '' }}"></div>
+    <div><label>PayPal Secret</label><input class="input" name="paypal_secret" value="{{ s.paypal_secret or '' }}"></div>
+    <div><label>Google SSO Client ID</label><input class="input" name="sso_google" value="{{ s.sso_google or '' }}"></div>
+    <div><label>Microsoft SSO Client ID</label><input class="input" name="sso_ms" value="{{ s.sso_ms or '' }}"></div>
+    <div style="grid-column:1/-1"><button class="btn primary">Save</button></div>
+  </form>
+</div>
+{% endblock %}

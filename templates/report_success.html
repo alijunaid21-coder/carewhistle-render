@@ -1,0 +1,8 @@
+﻿{% extends "layout.html" %}{% block body %}
+<div class="container card">
+  <h2>Report submitted</h2>
+  <p>Save these to follow up:</p>
+  <p><b>Case code:</b> <code>{{ case_code }}</code> &nbsp; <b>PIN:</b> <code>{{ pin }}</code></p>
+  <p><a class="btn" href="{{ url_for('follow') }}">Go to follow-up portal</a></p>
+</div>
+{% endblock %}

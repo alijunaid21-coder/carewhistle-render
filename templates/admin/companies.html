@@ -1,0 +1,21 @@
+﻿{% extends "admin/frame.html" %}{% block admin %}
+<h2>Companies</h2>
+<div class="card">
+  <form method="post" class="grid cols-3">
+    <div><label>Name</label><input class="input" name="name" required></div>
+    <div><label>Company code</label><input class="input" name="company_code" required placeholder="unique"></div>
+    <div style="grid-column:1/-1"><button class="btn primary">Create</button></div>
+  </form>
+</div>
+<div class="card" style="margin-top:12px">
+  <table class="table">
+    <tr><th>ID</th><th>Name</th><th>Code</th><th>Created</th><th></th></tr>
+    {% for c in companies %}
+    <tr><td>{{ c.id }}</td><td>{{ c.name }}</td><td>{{ c.company_code }}</td><td>{{ c.created_at[:16] }}</td>
+      <td>
+        <form method="post" style="display:inline"><input type="hidden" name="delete_id" value="{{ c.id }}"><button class="btn danger" onclick="return confirm('Delete company?')">Delete</button></form>
+      </td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

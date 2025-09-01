@@ -1,0 +1,14 @@
+﻿{% extends "manager_frame.html" %}{% block manager %}
+<h2>Messages with Admin</h2>
+<div class="card">
+  <div style="max-height:360px;overflow:auto;border:1px solid var(--line);padding:10px;border-radius:10px;background:#fff">
+    {% for m in msgs %}
+      <div style="margin-bottom:10px"><div style="opacity:.7;font-size:12px">{{ m.created_at }} — {{ m.sender }}</div><div>{{ m.body }}</div></div>
+    {% endfor %}
+  </div>
+  <form method="post" style="margin-top:10px">
+    <textarea class="input" name="body" rows="3" required placeholder="Message to admin"></textarea>
+    <button class="btn primary" style="margin-top:8px">Send</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+﻿{% extends "layout.html" %}{% block body %}
+<div class="layout">
+  <div class="sidebar">
+    <div style="font-weight:900;margin-bottom:8px">CareWhistle Admin</div>
+    <a href="{{ url_for('admin_overview') }}" class="{% if request.endpoint=='admin_overview' %}active{% endif %}">Overview</a>
+    <a href="{{ url_for('admin_reports') }}" class="{% if 'admin_reports' in request.endpoint %}active{% endif %}">Reports</a>
+    <a href="{{ url_for('admin_companies') }}" class="{% if 'admin_companies' in request.endpoint %}active{% endif %}">Companies</a>
+    <a href="{{ url_for('admin_managers') }}" class="{% if 'admin_managers' in request.endpoint %}active{% endif %}">Managers</a>
+    <a href="{{ url_for('admin_messages') }}" class="{% if request.endpoint=='admin_messages' %}active{% endif %}">Messages</a>
+    <a href="{{ url_for('admin_notifications') }}" class="{% if request.endpoint=='admin_notifications' %}active{% endif %}">Notifications</a>
+    <a href="{{ url_for('admin_media') }}" class="{% if request.endpoint=='admin_media' %}active{% endif %}">Media</a>
+    <a href="{{ url_for('admin_content') }}" class="{% if request.endpoint=='admin_content' %}active{% endif %}">Content</a>
+    <a href="{{ url_for('admin_settings') }}" class="{% if request.endpoint=='admin_settings' %}active{% endif %}">Settings</a>
+  </div>
+  <div class="main">{% block admin %}{% endblock %}</div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+﻿{% extends "admin/frame.html" %}{% block admin %}
+<h2>Managers</h2>
+<div class="card">
+  <form method="post" class="grid cols-3">
+    <div><label>Email</label><input class="input" name="email" required></div>
+    <div><label>Password</label><input class="input" name="password" required></div>
+    <div>
+      <label>Company</label>
+      <select class="input" name="company_id">{% for c in companies %}<option value="{{ c.id }}">{{ c.name }} ({{ c.company_code }})</option>{% endfor %}</select>
+    </div>
+    <div style="grid-column:1/-1"><button class="btn primary">Create</button></div>
+  </form>
+</div>
+<div class="card" style="margin-top:12px">
+  <table class="table">
+    <tr><th>ID</th><th>Email</th><th>Company</th><th>Created</th><th></th></tr>
+    {% for m in managers %}
+    <tr><td>{{ m.id }}</td><td>{{ m.email }}</td><td>{{ m.company_name }} ({{ m.company_code }})</td><td>{{ m.created_at[:16] }}</td>
+      <td><form method="post" style="display:inline"><input type="hidden" name="delete_id" value="{{ m.id }}"><button class="btn danger" onclick="return confirm('Delete manager?')">Delete</button></form></td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+﻿<!doctype html><html lang="en"><head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or "CareWhistle" }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head><body>
+  <div class="nav">
+    <div class="brand">
+      <img src="https://cdn-icons-png.flaticon.com/512/1587/1587565.png" alt="whistle">
+      <a href="{{ url_for('home') }}">CareWhistle</a>
+    </div>
+    <a href="{{ url_for('how') }}">How it works</a>
+    <a href="{{ url_for('report') }}">Make a Report</a>
+    <a href="{{ url_for('pricing') }}">Plans & Pricing</a>
+    <div class="spacer"></div>
+    {% if session.get('user_id') %}
+      {% if session.get('role')=='admin' %}<a href="{{ url_for('admin_overview') }}">Admin</a>{% endif %}
+      {% if session.get('role')=='manager' %}<a href="{{ url_for('manager_overview') }}">Manager</a>{% endif %}
+      <a class="btn" href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a class="btn" href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+  </div>
+
+  {% with msgs = get_flashed_messages(with_categories=True) %}
+    {% if msgs %}<div class="container">{% for c,m in msgs %}<div class="card">{{ m }}</div>{% endfor %}</div>{% endif %}
+  {% endwith %}
+
+  {% block body %}{% endblock %}
+  <footer>© {{ now()[:4] }} CareWhistle • info@carewhistle.com • “One of the most securest Whistleblowing systems in the UK.”</footer>
+</body></html>

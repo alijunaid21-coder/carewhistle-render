@@ -1,0 +1,13 @@
+﻿{% extends "admin/frame.html" %}{% block admin %}
+<h2>Messages (Admin workspace)</h2>
+<div class="card">
+  <table class="table">
+    <tr><th>Report</th><th>Channel</th><th>When</th><th>Snippet</th><th></th></tr>
+    {% for m in latest %}
+    <tr>
+      <td>#{{ m.report_id }}</td><td>{{ m.channel }}</td><td>{{ m.created_at[:16] }}</td><td>{{ m.body[:80] }}</td>
+      <td><a class="btn" href="{{ url_for('admin_report_detail', rid=m.report_id) }}">Open</a></td>
+    </tr>{% endfor %}
+  </table>
+</div>
+{% endblock %}

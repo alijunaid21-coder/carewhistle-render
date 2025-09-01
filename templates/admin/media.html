@@ -1,0 +1,13 @@
+﻿{% extends "admin/frame.html" %}{% block admin %}
+<h2>Media</h2>
+<div class="card">
+  <form method="post" enctype="multipart/form-data">
+    <input type="file" name="file" required> <button class="btn">Upload</button>
+  </form>
+</div>
+<div class="grid cols-3" style="margin-top:12px">
+  {% for f in files %}
+    <div class="card"><div>{{ f }}</div><img src="{{ url_for('static', filename='../media/' + f) }}" onerror="this.style.display='none'" style="max-width:100%"></div>
+  {% endfor %}
+</div>
+{% endblock %}

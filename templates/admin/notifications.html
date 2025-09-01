@@ -1,0 +1,11 @@
+﻿{% extends "admin/frame.html" %}{% block admin %}
+<h2>Notifications</h2>
+<div class="card">
+  <table class="table">
+    <tr><th>User</th><th>Title</th><th>When</th><th>Read</th></tr>
+    {% for n in notes %}
+    <tr><td>{{ n.email }}</td><td>{{ n.title }}</td><td>{{ n.created_at[:16] }}</td><td>{{ "Yes" if n.read_at else "No" }}</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}
